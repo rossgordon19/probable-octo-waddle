@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "fix-it",
-    "slug": "fix-it",
+    "name": "Fix_It",
+    "scheme": "fix-it",
+    "slug": "fix_it",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
