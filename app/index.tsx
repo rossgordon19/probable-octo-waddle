@@ -6,7 +6,7 @@ import { StatusBar } from "expo-status-bar";
 export default function App() {
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <Text>Fix It MVP</Text>
+      <Text className="text-3xl font-pblack">Fix It MVP</Text>
       <StatusBar style='auto' />
       <Link href='/profile' style={{ color: "blue" }}>
         Go to Profile
@@ -14,5 +14,4 @@ export default function App() {
     </View>
   );
 }
-
 
