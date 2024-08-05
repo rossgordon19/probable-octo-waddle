@@ -13,14 +13,19 @@ interface TabIconProps {
 
 const TabIcon: React.FC<TabIconProps> = ({ icon, color, name, focused }) => {
   return (
-    <View className="items-center justify-center gap-1">
+    <View className='items-center justify-center gap-1'>
       <Image
         source={icon}
         resizeMode='contain'
         tintColor={color}
         className='h-6 w-6'
       />
-      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`}>{name}</Text>
+      <Text
+        className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+        style={{ color: color }}
+      >
+        {name}
+      </Text>
     </View>
   );
 };
@@ -29,9 +34,18 @@ const TabsLayout = () => {
   return (
     <>
       <Tabs
-      screenOptions={{
-        tabBarShowLabel: false
-      }}
+        screenOptions={{
+          tabBarShowLabel: false,
+          // TODO: Add these
+          // tabBarActiveBackgroundColor: "",
+          // tabBarInactiveBackgroundColor: "",
+          // tabBarStyle: {
+          //   backgroundColor: "",
+          //   borderTopWidth: 1,
+          //   borderTopColor: "",
+          //   height: 84,
+          // },
+        }}
       >
         <Tabs.Screen
           name='home'
@@ -49,7 +63,7 @@ const TabsLayout = () => {
           }}
         />
 
-<Tabs.Screen
+        <Tabs.Screen
           name='camera'
           options={{
             title: "Camera",
@@ -65,7 +79,7 @@ const TabsLayout = () => {
           }}
         />
 
-<Tabs.Screen
+        <Tabs.Screen
           name='projects'
           options={{
             title: "Projects",
@@ -81,7 +95,7 @@ const TabsLayout = () => {
           }}
         />
 
-<Tabs.Screen
+        <Tabs.Screen
           name='profile'
           options={{
             title: "Profile",
@@ -96,7 +110,6 @@ const TabsLayout = () => {
             ),
           }}
         />
-        
       </Tabs>
     </>
   );
