@@ -1,18 +1,17 @@
 import { Image, ScrollView, Text, View } from "react-native";
+import { Redirect, router } from "expo-router";
 
 import CustomButton from "@/components/custom-button";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 import { images } from "../constants";
-import { router } from "expo-router";
 
 export default function App() {
   return (
     <SafeAreaView className='bg-white h-full'>
       <ScrollView
         contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: "center",
-          alignItems: "center",
+          height: "100%"
         }}
       >
         <View className='flex items-center justify-center w-full'>
@@ -28,14 +27,14 @@ export default function App() {
             <Text className='text-lg font-pregular text-center mt-4'>
               Empower Your Inner Handyman
             </Text>
-            <Text className='text-sm font-pregular text-center'>
-              Fix Anything, Anytime.
+            <Text className='text-sm font-pregular text-center mx-4 mt-4'>
+            Get step-by-step DIY guidance for home repairs and renovations; snap a photo, let our AI assist, or connect with a professional.
             </Text>
           </View>
           <CustomButton
             title='Continue with Email'
             handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-black mt-10'
+            containerStyles='w-[92%] bg-black'
           />
           <CustomButton
             title='Sign In with Google'
@@ -44,6 +43,7 @@ export default function App() {
           />
         </View>
       </ScrollView>
+      <StatusBar style="dark" />
     </SafeAreaView>
   );
 }
