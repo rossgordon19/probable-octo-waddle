@@ -11,7 +11,7 @@ export default function App() {
     <SafeAreaView className='bg-white h-full'>
       <ScrollView
         contentContainerStyle={{
-          height: "100%"
+          height: "100%",
         }}
       >
         <View className='flex items-center justify-center w-full'>
@@ -20,7 +20,7 @@ export default function App() {
             className='h-[300px] mb-[75px] w-auto'
             resizeMode='contain'
           />
-          <View className="bottom-[100px]">
+          <View className='bottom-[100px]'>
             <Text className='text-2xl font-bold text-center mt-4'>
               DIY with Confidence
             </Text>
@@ -28,22 +28,23 @@ export default function App() {
               Empower Your Inner Handyman
             </Text>
             <Text className='text-sm font-pregular text-center mx-4 mt-4'>
-            Get step-by-step DIY guidance for home repairs and renovations; snap a photo, let our AI assist, or connect with a professional.
+              Get step-by-step DIY guidance for home repairs and renovations;
+              snap a photo, let our AI assist, or connect with a professional.
             </Text>
           </View>
           <CustomButton
-            title='Continue with Email'
+            title='Sign In'
             handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-black'
+            containerStyles='w-[92%] bg-blue-500'
           />
           <CustomButton
-            title='Sign In with Google'
+            title='Sign Up'
             handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-blue-600 mt-4'
+            containerStyles='w-[92%] bg-black mt-4'
           />
         </View>
       </ScrollView>
-      <StatusBar style="dark" />
+      <StatusBar style='dark' />
     </SafeAreaView>
   );
 }

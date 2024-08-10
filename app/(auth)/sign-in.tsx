@@ -1,21 +1,44 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Alert, Image, ScrollView, Text, View } from "react-native";
 import React, { useState } from "react";
 
 import CustomButton from "@/components/custom-button";
+import { FIREBASE_AUTH } from "@/firebaseConfig";
 import FormField from "@/components/FormField";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const auth = FIREBASE_AUTH;
 
-  const submit = () => {};
+  const signIn = async () => {
+    setLoading(true);
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log(response);
+    } catch (error: any) {
+      console.log(error);
+
+      let errorMessage = "An error occurred while trying to sign in. Please try again.";
+
+      if (error.code === 'auth/invalid-credential') {
+        errorMessage = "The credentials you entered are invalid. Please check your email and password and try again.";
+      } else if (error.code === 'auth/user-not-found') {
+        errorMessage = "No account found with this email. Please check your email or sign up for a new account.";
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = "The password you entered is incorrect. Please try again.";
+      }
+
+      Alert.alert("Sign In Failed", errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <SafeAreaView className='bg-white text-black flex-1'>
@@ -33,29 +56,33 @@ const SignIn = () => {
 
             <FormField
               title='Email'
-              value={form.email}
-              handleChangeText={(e) => setForm({ ...form, email: e })}
+              value={email}
+              handleChangeText={setEmail}
               otherStyles='mt-7'
             />
 
             <FormField
               title='Password'
-              value={form.password}
-              handleChangeText={(e) => setForm({ ...form, password: e })}
+              value={password}
+              handleChangeText={setPassword}
               otherStyles='mt-7'
-              keyboardType='password'
             />
           </View>
           <CustomButton
             title='Sign In'
-            handlePress={submit}
+            handlePress={signIn}
             containerStyles='w-[92%] bg-blue-600 mt-4'
-            isLoading={isSubmitting}
+            isLoading={loading}
           />
         </View>
         <View className='justify-center pt-5 flex-row gap-2'>
           <Text className='text-lg font-pregular'>Don't have an account?</Text>
-        <Link href="/sign-up" className="text-lg font-psemibold text-blue-600">Sign Up</Link>
+          <Link
+            href='/sign-up'
+            className='text-lg font-psemibold text-blue-600'
+          >
+            Sign Up
+          </Link>
         </View>
       </ScrollView>
     </SafeAreaView>
