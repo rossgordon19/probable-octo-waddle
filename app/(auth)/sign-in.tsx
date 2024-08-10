@@ -2,32 +2,20 @@ import { Image, ScrollView, Text, View } from "react-native";
 import React, { useState } from "react";
 
 import CustomButton from "@/components/custom-button";
-import { FIREBASE_AUTH } from "@/firebaseConfig";
 import FormField from "@/components/FormField";
 import { Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "@/constants";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const auth = FIREBASE_AUTH;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const signIn = async () => {
-    setLoading(true);
-    try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response);
-    } catch (error: any) {
-      console.log(error);
-      alert("Sign In failed: " + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const submit = () => {};
 
   return (
     <SafeAreaView className='bg-white text-black flex-1'>
@@ -45,34 +33,29 @@ const SignIn = () => {
 
             <FormField
               title='Email'
-              value={email}
-              handleChangeText={setEmail}
+              value={form.email}
+              handleChangeText={(e) => setForm({ ...form, email: e })}
               otherStyles='mt-7'
             />
 
             <FormField
               title='Password'
-              value={password}
-              handleChangeText={setPassword}
+              value={form.password}
+              handleChangeText={(e) => setForm({ ...form, password: e })}
               otherStyles='mt-7'
               keyboardType='password'
             />
           </View>
           <CustomButton
             title='Sign In'
-            handlePress={signIn}
+            handlePress={submit}
             containerStyles='w-[92%] bg-blue-600 mt-4'
-            isLoading={loading}
+            isLoading={isSubmitting}
           />
         </View>
         <View className='justify-center pt-5 flex-row gap-2'>
           <Text className='text-lg font-pregular'>Don't have an account?</Text>
-          <Link
-            href='/sign-up'
-            className='text-lg font-psemibold text-blue-600'
-          >
-            Sign Up
-          </Link>
+        <Link href="/sign-up" className="text-lg font-psemibold text-blue-600">Sign Up</Link>
         </View>
       </ScrollView>
     </SafeAreaView>

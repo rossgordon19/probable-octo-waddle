@@ -32,14 +32,14 @@ export default function App() {
             </Text>
           </View>
           <CustomButton
-            title='Sign In'
+            title='Continue with Email'
             handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-blue-500'
+            containerStyles='w-[92%] bg-black'
           />
           <CustomButton
-            title='Sign Up'
+            title='Sign In with Google'
             handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-black mt-4'
+            containerStyles='w-[92%] bg-blue-600 mt-4'
           />
         </View>
       </ScrollView>
