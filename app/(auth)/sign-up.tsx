@@ -25,10 +25,11 @@ const SignUp = () => {
         email,
         password
       );
-      console.log(response);
+      console.log("User Created:", response.user.uid);
       Alert.alert("Success", "Account Created!");
     } catch (error: any) {
-      console.log(error);
+      console.log("Error Code:", error.code);
+      console.log("Error Message:", error.message);
 
       let errorMessage =
         "An error occurred while trying to create the account. Please try again.";
@@ -69,6 +70,8 @@ const SignUp = () => {
               value={username}
               handleChangeText={setUsername}
               otherStyles='mt-10'
+              autoCapitalize='none'
+
             />
 
             <FormField
@@ -77,6 +80,8 @@ const SignUp = () => {
               handleChangeText={setEmail}
               otherStyles='mt-7'
               keyboardType='email-address'
+              autoCapitalize='none'
+
             />
 
             <FormField

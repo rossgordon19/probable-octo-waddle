@@ -1,8 +1,5 @@
-import Constants from "expo-constants";
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-
-console.log("Firebase API Key:", Constants.expoConfig?.extra?.FIREBASE_API_KEY);
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,

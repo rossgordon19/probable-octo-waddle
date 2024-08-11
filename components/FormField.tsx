@@ -10,6 +10,7 @@ type FormFieldProps = {
   otherStyles: any;
   keyboardType?: string;
   placeholder?: any;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
 };
 
 const FormField: React.FC<FormFieldProps> = ({
@@ -18,8 +19,8 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
   handleChangeText,
   otherStyles,
-  keyboardType,
-  ...props
+  keyboardType = "default",
+  autoCapitalize = "sentences", // Default value if not provided
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -35,6 +36,7 @@ const FormField: React.FC<FormFieldProps> = ({
           onChangeText={handleChangeText}
           placeholderTextColor='#7b7b8b'
           secureTextEntry={title === "Password" && !showPassword}
+          autoCapitalize={autoCapitalize} 
         />
 
         {title === "Password" && (

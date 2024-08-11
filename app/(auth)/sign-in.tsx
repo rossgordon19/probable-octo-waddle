@@ -22,16 +22,21 @@ const SignIn = () => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
     } catch (error: any) {
-      console.log(error);
+      console.log("Error Code:", error.code);
+      console.log("Error Message:", error.message);
 
-      let errorMessage = "An error occurred while trying to sign in. Please try again.";
+      let errorMessage =
+        "An error occurred while trying to sign in. Please try again.";
 
-      if (error.code === 'auth/invalid-credential') {
-        errorMessage = "The credentials you entered are invalid. Please check your email and password and try again.";
-      } else if (error.code === 'auth/user-not-found') {
-        errorMessage = "No account found with this email. Please check your email or sign up for a new account.";
-      } else if (error.code === 'auth/wrong-password') {
-        errorMessage = "The password you entered is incorrect. Please try again.";
+      if (error.code === "auth/invalid-credential") {
+        errorMessage =
+          "The credentials you entered are invalid. Please check your email and password and try again.";
+      } else if (error.code === "auth/user-not-found") {
+        errorMessage =
+          "No account found with this email. Please check your email or sign up for a new account.";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessage =
+          "The password you entered is incorrect. Please try again.";
       }
 
       Alert.alert("Sign In Failed", errorMessage);
@@ -59,6 +64,7 @@ const SignIn = () => {
               value={email}
               handleChangeText={setEmail}
               otherStyles='mt-7'
+              autoCapitalize='none'
             />
 
             <FormField
