@@ -92,7 +92,7 @@ const SignIn = () => {
         </View>
         <View className="justify-center pt-5 flex-row gap-2">
           <Text className="text-lg font-pregular">Don't have an account?</Text>
-          <Link href="/sign-up" className="text-lg font-psemibold text-blue-600">
+          <Link href="/sign-up" className="text-lg font-psemibold text-blue-700">
             Sign Up
           </Link>
         </View>
