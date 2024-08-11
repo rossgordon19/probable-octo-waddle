@@ -1,6 +1,7 @@
 import { Slot, Stack } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { UserProvider, useUser } from "@/context/UserContext"; // Import the UserContext
 
+import React from 'react';
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
@@ -20,25 +21,36 @@ const RootLayout = () => {
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
+  const { user, loading } = useUser(); // Get user and loading state from the context
+
   useEffect(() => {
     if (error) throw error;
 
-    if (fontsLoaded) {
+    if (fontsLoaded && !loading) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, error]);
+  }, [fontsLoaded, error, loading]);
 
-  if (!fontsLoaded && !error) {
-    return null;
+  if (!fontsLoaded || loading) {
+    return null; // Show nothing until fonts are loaded and authentication state is resolved
   }
 
   return (
     <Stack>
-      <Stack.Screen name='index' options={{ headerShown: false }} />
-      <Stack.Screen name='(auth)' options={{ headerShown: false }} />
-      <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      {user ? (
+        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+      ) : (
+        <Stack.Screen name='(auth)' options={{ headerShown: false }} />
+      )}
     </Stack>
   );
 };
 
-export default RootLayout;
+// Wrapping RootLayout with UserProvider
+export default function App() {
+  return (
+    <UserProvider>
+      <RootLayout />
+    </UserProvider>
+  );
+}

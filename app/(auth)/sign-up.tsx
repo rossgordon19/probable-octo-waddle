@@ -26,7 +26,9 @@ const SignUp = () => {
         password
       );
       console.log("User Created:", response.user.uid);
-      Alert.alert("Success", "Account Created!");
+      Alert.alert("Success", "Account Created!", [
+        { text: "OK", onPress: () => console.log("OK Pressed") },
+      ]);
     } catch (error: any) {
       console.log("Error Code:", error.code);
       console.log("Error Message:", error.message);
@@ -52,59 +54,55 @@ const SignUp = () => {
   };
 
   return (
-    <SafeAreaView className='bg-white text-black flex-1'>
+    <SafeAreaView className="bg-white text-black flex-1">
       <ScrollView>
-        <View className='flex-1 items-center justify-center w-full'>
+        <View className="flex-1 items-center justify-center w-full">
           <Image
             source={images.logo}
-            className='h-[150px] w-auto'
-            resizeMode='contain'
+            className="h-[150px] w-auto"
+            resizeMode="contain"
           />
-          <View className='w-full px-4 mt-10'>
-            <Text className='text-2xl font-semibold text-left'>
+          <View className="w-full px-4 mt-10">
+            <Text className="text-2xl font-semibold text-left">
               Sign Up to FixIt
             </Text>
 
             <FormField
-              title='Username'
+              title="Username"
               value={username}
               handleChangeText={setUsername}
-              otherStyles='mt-10'
-              autoCapitalize='none'
-
+              otherStyles="mt-10"
+              autoCapitalize="none"
             />
 
             <FormField
-              title='Email'
+              title="Email"
               value={email}
               handleChangeText={setEmail}
-              otherStyles='mt-7'
-              keyboardType='email-address'
-              autoCapitalize='none'
-
+              otherStyles="mt-7"
+              keyboardType="email-address"
+              autoCapitalize="none"
             />
 
             <FormField
-              title='Password'
+              title="Password"
               value={password}
               handleChangeText={setPassword}
-              otherStyles='mt-7'
+              otherStyles="mt-7"
             />
           </View>
           <CustomButton
-            title='Sign Up'
+            title="Sign Up"
             handlePress={signUp}
-            containerStyles='w-[92%] bg-blue-600 mt-4'
+            containerStyles="w-[92%] bg-blue-600 mt-4"
             isLoading={loading}
           />
         </View>
-        <View className='justify-center pt-5 flex-row gap-2'>
-          <Text className='text-lg font-pregular'>
-            Have an account already?
-          </Text>
+        <View className="justify-center pt-5 flex-row gap-2">
+          <Text className="text-lg font-pregular">Have an account already?</Text>
           <Link
-            href='/sign-in'
-            className='text-lg font-psemibold text-blue-600'
+            href="/sign-in"
+            className="text-lg font-psemibold text-blue-600"
           >
             Sign In
           </Link>
