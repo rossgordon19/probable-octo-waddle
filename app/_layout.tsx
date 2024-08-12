@@ -1,7 +1,7 @@
 import { Slot, Stack } from "expo-router";
-import { UserProvider, useUser } from "@/context/UserContext"; // Import the UserContext
+import { UserProvider, useUser } from "@/context/UserContext";
 
-import React from 'react';
+import React from "react";
 import { SplashScreen } from "expo-router";
 import { useEffect } from "react";
 import { useFonts } from "expo-font";
@@ -21,8 +21,7 @@ const RootLayout = () => {
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
 
-  const { user, loading } = useUser(); // Get user and loading state from the context
-
+  const { user, loading } = useUser();
   useEffect(() => {
     if (error) throw error;
 
@@ -32,11 +31,12 @@ const RootLayout = () => {
   }, [fontsLoaded, error, loading]);
 
   if (!fontsLoaded || loading) {
-    return null; // Show nothing until fonts are loaded and authentication state is resolved
+    return null;
   }
 
   return (
     <Stack>
+      <Stack.Screen name='index' options={{ headerShown: false }} />
       {user ? (
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
       ) : (
@@ -46,7 +46,6 @@ const RootLayout = () => {
   );
 };
 
-// Wrapping RootLayout with UserProvider
 export default function App() {
   return (
     <UserProvider>
