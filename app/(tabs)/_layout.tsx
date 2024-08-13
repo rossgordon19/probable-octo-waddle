@@ -64,15 +64,15 @@ const TabsLayout = () => {
         />
 
         <Tabs.Screen
-          name='camera'
+          name='handy'
           options={{
-            title: "Camera",
+            title: "HandyAI",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon
-                icon={icons.camera}
+                icon={icons.sparkle}
                 color={color}
-                name='Camera'
+                name='Handy'
                 focused={focused}
               />
             ),
