@@ -1,5 +1,4 @@
-// ONBOARDING SCREEN
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 import CustomButton from "@/components/custom-button";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,35 +8,45 @@ import { router } from "expo-router";
 
 export default function App() {
   return (
-    <SafeAreaView className='bg-white text-black flex-1'>
-      <ScrollView>
-        <View className='flex-1 items-center justify-center w-full'>
-          <Image
-            source={images.logo}
-            className='h-[150px] w-auto'
-            resizeMode='contain'
-          />
-          <View className='w-full px-4 mt-10'>
-            <Text className='text-2xl font-semibold text-center'>
-              DIY with Confidence
-            </Text>
-            <Text className='text-lg font-pregular text-center mt-4'>
-              Prototype MVP
-            </Text>
-          </View>
+    <SafeAreaView className="bg-white flex-1">
+      {/* Top Section: Logo and Text */}
+      <View className="flex-1 items-center justify-center px-6">
+        <Image
+          source={images.logo}
+          className="h-[150px] w-auto mb-8"
+          resizeMode="contain"
+        />
+        <View className="w-full mb-12">
+          <Text className="text-3xl font-extrabold text-center text-gray-900">
+            DIY with Confidence
+          </Text>
+          <Text className="text-lg font-medium text-center text-gray-500 mt-2">
+            Prototype MVP
+          </Text>
+        </View>
+      </View>
+
+      {/* Bottom Section: Buttons */}
+      <View className="px-6 pb-10">
+        <View className="mb-4">
           <CustomButton
-            title='Sign In'
-            handlePress={() => router.push("/sign-in")}
-            containerStyles='w-[92%] bg-blue-600 mt-4'
-          />
-          <CustomButton
-            title='Sign Up'
+            title="Get Started"
             handlePress={() => router.push("/sign-up")}
-            containerStyles='w-[92%] bg-black mt-4'
+            containerStyles="w-full bg-blue-500 py-4 rounded-full"
+            textStyles="text-white"
           />
         </View>
-      </ScrollView>
-      <StatusBar style='dark' />
+        <View>
+          <CustomButton
+            title="Log In"
+            handlePress={() => router.push("/sign-in")}
+            containerStyles="w-full border border-blue-500 py-4 rounded-full"
+            textStyles="text-blue-500"
+          />
+        </View>
+      </View>
+
+      <StatusBar style="dark" />
     </SafeAreaView>
   );
 }

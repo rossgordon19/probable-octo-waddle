@@ -1,101 +1,147 @@
-import { Button, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
 
-import { Ionicons } from "@expo/vector-icons"; // Assuming you're using Expo
-import React from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home: React.FC = () => {
+  // Simulating unread notifications
+  const unreadNotifications = 3;
+
+  // To-do list state
+  const [tasks, setTasks] = useState([
+    { id: 1, text: "Fix the Door Hinge", completed: true },
+    { id: 2, text: "Paint the Living Room", completed: false },
+    { id: 3, text: "Install New Light Fixtures", completed: false },
+  ]);
+
+  // Toggle task completion
+  const toggleTaskCompletion = (taskId: number) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
   return (
-    <SafeAreaView className='flex-1 bg-blue-50'>
-      <View className='flex-1 justify-between p-4'>
-        {/* Header */}
-        <View className='items-center mt-6 mb-4'>
-          <Text className='text-3xl font-bold text-blue-900'>HOME SCREEN</Text>
+    <SafeAreaView className="flex-1 bg-blue-50">
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+        {/* Top Section: User Greeting */}
+        <View className="flex-row justify-between items-center mt-4 px-4">
+          <TouchableOpacity>
+            <Ionicons name="person-circle-outline" size={40} color="#1E40AF" />
+          </TouchableOpacity>
+
+          <Text className="text-2xl font-bold text-blue-900">
+            Good Morning, John!
+          </Text>
+
+          {/* Notifications Icon with Badge */}
+          <TouchableOpacity className="relative">
+            <Ionicons name="notifications-outline" size={28} color="#1E40AF" />
+            {unreadNotifications > 0 && (
+              <View className="absolute -top-2 -right-2 bg-red-600 rounded-full h-5 w-5 items-center justify-center">
+                <Text className="text-white text-xs">{unreadNotifications}</Text>
+              </View>
+            )}
+          </TouchableOpacity>
         </View>
 
-        {/* Main Content */}
-        <View className='flex-1 justify-evenly'>
-          {/* Quick Actions Section */}
-          <View className='w-full p-4 bg-blue-100 rounded-lg shadow-md'>
-            <Text className='text-xl font-semibold text-blue-900 mb-2'>
-              Quick Actions
-            </Text>
-            <View className='flex-row justify-between space-x-4'>
-              <TouchableOpacity className='flex-1 bg-blue-200 p-2 rounded-lg items-center'>
-                <Ionicons name='add-circle-outline' size={24} color='blue' />
-                <Text className='text-blue-900'>New Project</Text>
+        {/* Quick Access Buttons */}
+        <View className="flex-row justify-between mt-6 space-x-4 px-4">
+          <TouchableOpacity className="flex-1 bg-white p-4 rounded-xl items-center shadow-lg">
+            <Ionicons name="add-circle-outline" size={28} color="#1E40AF" />
+            <Text className="mt-2 text-center text-blue-900">New Project</Text>
+          </TouchableOpacity>
+          <TouchableOpacity className="flex-1 bg-white p-4 rounded-xl items-center shadow-lg">
+            <Ionicons name="time-outline" size={28} color="#1E40AF" />
+            <Text className="mt-2 text-center text-blue-900">Recent Projects</Text>
+          </TouchableOpacity>
+          <TouchableOpacity className="flex-1 bg-white p-4 rounded-xl items-center shadow-lg">
+            <Ionicons name="heart-outline" size={28} color="#1E40AF" />
+            <Text className="mt-2 text-center text-blue-900">Favorites</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Start Your Day Section */}
+        <View className="mt-6 bg-white p-6 rounded-2xl shadow-lg mx-4">
+          <Text className="text-2xl font-bold text-blue-900">Start Your Day</Text>
+          <Text className="mt-2 text-blue-700">
+            Need assistance with your projects? Talk to our AI assistant to get help with your tasks, advice on next steps, or just some quick insights.
+          </Text>
+          <TouchableOpacity className="mt-6 py-2 px-4 bg-blue-500 rounded-full items-center">
+            <Text className="text-white font-semibold">Talk to AI for Help</Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* To-Do List Section (moved up) */}
+        <View className="mt-6 bg-white p-6 rounded-2xl shadow-lg mx-4">
+          <Text className="text-2xl font-bold text-blue-900">To-Do List</Text>
+          <View className="mt-4 space-y-3">
+            {tasks.map((task) => (
+              <TouchableOpacity
+                key={task.id}
+                onPress={() => toggleTaskCompletion(task.id)}
+                className="flex-row items-center"
+              >
+                <Ionicons
+                  name={task.completed ? "checkmark-circle" : "ellipse-outline"}
+                  size={24}
+                  color={task.completed ? "green" : "#1E40AF"}
+                />
+                <Text
+                  className={`ml-3 text-blue-700 ${
+                    task.completed ? "line-through" : ""
+                  }`}
+                >
+                  {task.text}
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity className='flex-1 bg-blue-200 p-2 rounded-lg items-center'>
-                <Ionicons name='cloud-upload-outline' size={24} color='blue' />
-                <Text className='text-blue-900'>Upload</Text>
-              </TouchableOpacity>
-              <TouchableOpacity className='flex-1 bg-blue-200 p-2 rounded-lg items-center'>
-                <Ionicons name='settings-outline' size={24} color='blue' />
-                <Text className='text-blue-900'>Settings</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          {/* Featured Projects/Tips Section */}
-          <View className='w-full p-4 bg-blue-100 rounded-lg shadow-md'>
-            <Text className='text-xl font-semibold text-blue-900 mb-2'>
-              Featured DIY Projects & Tips
-            </Text>
-            <View className='space-y-2'>
-              <Text className='text-blue-700'>
-                - Project A: Perfect your drywall repair skills
-              </Text>
-              <Text className='text-blue-700'>
-                - Tip: 5 essential tools every DIYer needs
-              </Text>
-            </View>
-          </View>
-
-          {/* Recent Activity Section */}
-          <View className='w-full p-4 bg-blue-100 rounded-lg shadow-md'>
-            <Text className='text-xl font-semibold text-blue-900 mb-2'>
-              Recent Activity
-            </Text>
-            <View className='space-y-2'>
-              <Text className='text-blue-700'>- Edited Project B</Text>
-              <Text className='text-blue-700'>
-                - Uploaded files to Project C
-              </Text>
-              <Text className='text-blue-700'>
-                - Completed task in Project D
-              </Text>
-            </View>
-          </View>
-
-          {/* Notifications/Alerts Section */}
-          <View className='w-full p-4 bg-blue-100 rounded-lg shadow-md'>
-            <Text className='text-xl font-semibold text-blue-900 mb-2'>
-              Notifications & Alerts
-            </Text>
-            <View className='space-y-2'>
-              <Text className='text-blue-700'>
-                - You have 3 new notifications
-              </Text>
-              <Text className='text-blue-700'>- System update available</Text>
-            </View>
-          </View>
-
-          {/* AI Assistant Prompt Section */}
-          <View className='w-full p-4 bg-blue-100 rounded-lg shadow-md'>
-            <Text className='text-xl font-semibold text-blue-900'>
-              AI Assistant Prompt
-            </Text>
-            <Text className='text-blue-700 mt-2'>
-              Need help? Ask [AI Name]. Get quick assistance anytime.
-            </Text>
-            <Button
-              title='Ask AI'
-              onPress={() => alert("AI Assistant Activated!")}
-              color='#1E40AF'
-            />
+            ))}
           </View>
         </View>
-      </View>
+
+        {/* Project Categories */}
+        <View className="mt-6 bg-white p-6 rounded-2xl shadow-lg mx-4">
+          <Text className="text-2xl font-bold text-blue-900">Project Categories</Text>
+          <View className="mt-4 flex-row justify-between space-x-4">
+            <TouchableOpacity className="bg-blue-50 p-4 rounded-xl items-center w-[100px]">
+              <Ionicons name="water-outline" size={28} color="#1E40AF" />
+              <Text className="mt-2 text-center text-blue-900 text-sm">Plumbing</Text>
+            </TouchableOpacity>
+            <TouchableOpacity className="bg-blue-50 p-4 rounded-xl items-center w-[100px]">
+              <Ionicons name="flash-outline" size={28} color="#1E40AF" />
+              <Text className="mt-2 text-center text-blue-900 text-sm">Electrical</Text>
+            </TouchableOpacity>
+            <TouchableOpacity className="bg-blue-50 p-4 rounded-xl items-center w-[100px]">
+              <Ionicons name="hammer-outline" size={28} color="#1E40AF" />
+              <Text className="mt-2 text-center text-blue-900 text-sm">Carpentry</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Featured DIY Project (Article) */}
+        <View className="mt-6 bg-white rounded-2xl shadow-lg mx-4 overflow-hidden">
+          <Image
+            source={require("../../assets/images/leak.png")}
+            className="h-36 mt-6 w-full"
+            resizeMode="contain"
+          />
+          <View className="p-6">
+            <Text className="text-2xl font-bold text-blue-900">Fix a Leaky Faucet</Text>
+            <Text className="text-gray-600 mt-2">
+              Learn how to repair a common household issue with easy-to-follow steps.
+            </Text>
+            <Text className="text-gray-500 mt-4">
+              A leaky faucet is a common problem in many homes. Fortunately, it's a simple fix that can be done with basic tools. In this article, we’ll guide you through the process step-by-step...
+            </Text>
+            <TouchableOpacity className="mt-6 py-2 px-4 bg-blue-500 rounded-full items-center">
+              <Text className="text-white font-semibold">Read More</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

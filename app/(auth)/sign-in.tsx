@@ -22,7 +22,6 @@ const SignIn = () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
-      // Navigate directly to the home screen after a successful sign-in
       router.replace("/home");
     } catch (error: any) {
       console.log("Error Code:", error.code);
@@ -49,46 +48,52 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className='bg-white text-black flex-1'>
-      <ScrollView>
-        <View className='flex-1 items-center justify-center w-full'>
+    <SafeAreaView className="bg-white flex-1">
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center", paddingHorizontal: 20 }}>
+        <View className="items-center">
           <Image
             source={images.logo}
-            className='h-[150px] w-auto'
-            resizeMode='contain'
+            className="h-[150px] w-auto mb-8"
+            resizeMode="contain"
           />
-          <View className='w-full px-4 mt-10'>
-            <Text className='text-2xl font-semibold text-left'>
+          <View className="w-full mb-12">
+            <Text className="text-3xl font-extrabold text-center text-gray-900">
               Log into FixIt
             </Text>
+          </View>
 
+          <View className="w-full">
             <FormField
-              title='Email'
+              title="Email"
               value={email}
               handleChangeText={setEmail}
-              otherStyles='mt-7'
-              autoCapitalize='none'
+              otherStyles="mt-8"
+              autoCapitalize="none"
             />
-
             <FormField
-              title='Password'
+              title="Password"
               value={password}
               handleChangeText={setPassword}
-              otherStyles='mt-7'
+              otherStyles="mt-8"
             />
           </View>
+
           <CustomButton
-            title='Sign In'
+            title="Sign In"
             handlePress={signIn}
-            containerStyles='w-[92%] bg-blue-600 mt-4'
+            containerStyles="w-full bg-blue-500 py-4 rounded-full mt-8"
+            textStyles="text-white"
             isLoading={loading}
           />
         </View>
-        <View className='justify-center pt-5 flex-row gap-2'>
-          <Text className='text-lg font-pregular'>Don't have an account?</Text>
+
+        <View className="justify-center pt-6 flex-row gap-2">
+          <Text className="text-base font-medium text-gray-700">
+            Don't have an account?
+          </Text>
           <Link
-            href='/sign-up'
-            className='text-lg font-psemibold text-blue-700'
+            href="/sign-up"
+            className="text-base font-semibold text-blue-600"
           >
             Sign Up
           </Link>
