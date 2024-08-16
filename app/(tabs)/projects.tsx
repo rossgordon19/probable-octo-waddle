@@ -4,17 +4,18 @@ import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Projects = () => {
+const Projects: React.FC = () => {
   return (
     <SafeAreaView className="flex-1 bg-blue-50 p-6">
-      {/* Header */}
+      {/* Header Section */}
       <View className="items-center mb-8">
         <Text className="text-3xl font-semibold text-blue-900">My Projects</Text>
       </View>
 
-      {/* Dashboard Layout */}
+      {/* Main Content Area */}
       <ScrollView className="flex-1 space-y-8">
-        {/* In Progress Projects */}
+        
+        {/* In Progress Projects Section */}
         <View>
           <Text className="text-xl font-semibold text-blue-900 mb-4">
             In Progress
@@ -41,7 +42,7 @@ const Projects = () => {
           </View>
         </View>
 
-        {/* Completed Projects */}
+        {/* Completed Projects Section */}
         <View>
           <Text className="text-xl font-semibold text-blue-900 mb-4">
             Completed
@@ -68,7 +69,7 @@ const Projects = () => {
           </View>
         </View>
 
-        {/* Project Categories */}
+        {/* Project Categories Section */}
         <View>
           <Text className="text-xl font-semibold text-blue-900 mb-4">
             Project Categories
