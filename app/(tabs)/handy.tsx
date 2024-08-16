@@ -1,3 +1,5 @@
+import * as ImagePicker from "expo-image-picker"; // Import ImagePicker for camera functionality
+
 import {
   Animated,
   KeyboardAvoidingView,
@@ -88,9 +90,24 @@ const Handy: React.FC = () => {
     }
   };
 
-  // Function to simulate launching the camera (placeholder functionality)
-  const handleLaunchCamera = () => {
-    console.log("Camera launched");
+  // Function to launch the camera
+  const handleLaunchCamera = async () => {
+    // Request camera permissions
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status === "granted") {
+      // Launch the camera
+      const result = await ImagePicker.launchCameraAsync();
+
+      // Check if the operation was not canceled and the assets array exists
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        // Access the uri from the first asset in the array
+        console.log("Image captured:", result.assets[0].uri);
+      } else {
+        console.log("Camera operation canceled");
+      }
+    } else {
+      console.log("Camera permission denied");
+    }
   };
 
   // Ref for managing fade animation on message bubbles

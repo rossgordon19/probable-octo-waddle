@@ -1,54 +1,91 @@
-# Welcome to your Expo app 👋
+# Fix-It: AI-Powered DIY Home Repair Assistant 🛠️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the **Fix-It** project repository. This is a mobile application built with React Native and Expo that leverages AI to assist users with DIY home repair tasks. Whether it's fixing a leaky faucet or tackling more complex projects, Fix-It guides users through the process step-by-step.
 
-## Get started
+This project uses a modern tech stack including **React Native**, **Expo**, **NativeWind** for styling, **TypeScript**, **Firebase** for backend services, and the **OpenAI API** for AI-driven assistance.
 
-1. Install dependencies
+## 🛠 Tech Stack
 
-   ```bash
-   npm install
-   ```
+- **Frontend**: React Native with Expo
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Language**: TypeScript
+- **Backend**: Firebase (authentication, database)
+- **AI Integration**: OpenAI API
 
-2. Start the app
+## 🚀 Getting Started
 
-   ```bash
-    npx expo start
-   ```
+### 1. Install Dependencies
 
-In the output, you'll find options to open the app in a
+First, make sure you have Node.js installed. Then, install the required dependencies:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+```bash
+npm install
+```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 2. Start the App
 
-## Get a fresh project
+Use Expo's CLI to run the development server:
 
-When you're ready, run:
+```bash
+npx expo start
+```
+
+You can run the app on:
+
+- **Development Build**: Learn more about setting up [development builds](https://docs.expo.dev/develop/development-builds/introduction/).
+- **Android Emulator**: Launch the app on an [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/).
+- **iOS Simulator**: Test the app on an [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/).
+- **Expo Go**: Preview the app on your device using the [Expo Go](https://expo.dev/go) app.
+
+### 3. Environment Variables
+
+Set up your environment variables in a `.env` file (keys for Firebase, OpenAI, etc.):
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+FIREBASE_API_KEY=your_firebase_api_key_here
+```
+
+Make sure your `.env` file is included in `.gitignore` to keep your keys secure.
+
+### 4. Begin Development
+
+The main codebase is organized in the **app** directory, which uses **file-based routing** with Expo's router. You can start editing the app screens and components to customize or extend the functionality.
+
+## 🧼 Resetting the Project
+
+To reset the project to a clean state, run the following command:
 
 ```bash
 npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+This will move the starter code to the **app-example** directory and create a blank **app** directory for new development.
 
-## Learn more
+## 🛠 Project Structure
 
-To learn more about developing your project with Expo, look at the following resources:
+This project follows a modular structure to keep the codebase clean and maintainable:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **app/**: Main app screens and navigation.
+- **assets/**: Fonts, images, and icons.
+- **components/**: Reusable UI components (e.g., buttons, form fields).
+- **context/**: Global state management with React context.
+- **constants/**: Asset management for icons, images, etc.
+- **firebaseConfig.ts**: Firebase configuration.
+- **tailwind.config.js**: Tailwind CSS configuration for NativeWind.
+- **.env**: Environment variables (e.g., API keys).
 
-## Join the community
+## 📚 Documentation & Resources
 
-Join our community of developers creating universal apps.
+- **[Expo Documentation](https://docs.expo.dev/)**: Everything you need to know about working with Expo.
+- **[NativeWind Documentation](https://www.nativewind.dev/)**: Learn how to use Tailwind CSS in your React Native components.
+- **[React Native Documentation](https://reactnative.dev/docs/getting-started)**: Official React Native documentation.
+- **[OpenAI API Documentation](https://beta.openai.com/docs/)**: Documentation for integrating OpenAI into your app.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# probable-octo-waddle
+## 🔒 License
 
+This software is the confidential and proprietary information of [Your Startup Name] ("Confidential Information"). You shall not disclose such Confidential Information and shall use it only in accordance with the terms of the license agreement you entered into with [Your Startup Name].
 
-<!-- TODO: Write, README.md, add attribute-flaticons -->
+Unauthorized copying of this file, via any medium, is strictly prohibited. Proprietary and confidential.
+
+For any questions or inquiries, please contact [Your Contact Information].
