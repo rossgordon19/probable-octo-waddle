@@ -4,6 +4,7 @@ import eye from "../assets/icons/eye.png";
 import eyeHide from "../assets/icons/eye-hide.png";
 import hammer from "../assets/icons/hammer.png";
 import home from "../assets/icons/home.png";
+import leak from "../assets/images/leak.png";
 import leftArrow from "../assets/icons/left-arrow.png";
 import plus from "../assets/icons/plus.png";
 import profile from "../assets/icons/profile.png";
@@ -23,5 +24,6 @@ export default {
   rightArrow,
   eyeHide,
   eye,
-  sparkle
+  sparkle,
+  leak
 };

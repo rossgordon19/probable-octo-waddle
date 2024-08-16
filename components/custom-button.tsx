@@ -1,9 +1,6 @@
 import {
-  StyleProp,
   Text,
-  TextStyle,
   TouchableOpacity,
-  ViewStyle,
 } from "react-native";
 
 import React from "react";
@@ -11,10 +8,9 @@ import React from "react";
 type CustomButtonProps = {
   title: string;
   handlePress: () => void;
-  containerStyles?: any;
-  textStyles?: StyleProp<TextStyle>;
+  containerStyles?: string;
+  textStyles?: string;
   isLoading?: boolean;
-  className?: string;
 };
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -28,14 +24,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     <TouchableOpacity
       onPress={handlePress}
       activeOpacity={0.7}
-      style={containerStyles}
       className={`rounded-xl min-h-[62px] flex flex-row justify-center items-center ${containerStyles} ${
         isLoading ? "opacity-50" : ""
-      }`}      disabled={isLoading}
+      }`}
+      disabled={isLoading}
     >
       <Text
-        style={textStyles}
-        className='font-psemibold text-lg text-white' 
+        className={`font-psemibold text-lg ${textStyles}`}
       >
         {title}
       </Text>
