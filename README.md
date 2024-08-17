@@ -52,16 +52,6 @@ Make sure your `.env` file is included in `.gitignore` to keep your keys secure.
 
 The main codebase is organized in the **app** directory, which uses **file-based routing** with Expo's router. You can start editing the app screens and components to customize or extend the functionality.
 
-## 🧼 Resetting the Project
-
-To reset the project to a clean state, run the following command:
-
-```bash
-npm run reset-project
-```
-
-This will move the starter code to the **app-example** directory and create a blank **app** directory for new development.
-
 ## 🛠 Project Structure
 
 This project follows a modular structure to keep the codebase clean and maintainable:
